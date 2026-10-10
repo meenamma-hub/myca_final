@@ -55,17 +55,18 @@ function StudentTable() {
     filteredStudents.length / studentsPerPage
   );
 
+  const inputClass =
+    "border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500";
+
   return (
-    <div className="bg-white rounded-xl shadow p-6 mt-8">
-
-      <div className="flex justify-between items-center mb-6">
-
+    <div className="mt-8 rounded-xl border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-gray-900 dark:text-white shadow p-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <input
           type="text"
           placeholder="Search by name, email or club..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="border border-gray-300 rounded-lg px-4 py-2 w-80"
+          className={`${inputClass} w-full sm:w-80`}
         />
 
         <button
@@ -74,113 +75,87 @@ function StudentTable() {
         >
           + Add Student
         </button>
-
       </div>
 
-      <table className="w-full">
-
-        <thead className="bg-gray-100">
-
-          <tr>
-
-            <th className="p-3 text-left">Name</th>
-
-            <th className="text-left">Email</th>
-
-            <th className="text-left">Club</th>
-
-            <th>Status</th>
-
-            <th>Actions</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          {filteredStudents.length === 0 ? (
-
+      <div className="overflow-x-auto">
+        <table className="w-full text-left">
+          <thead className="bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-200">
             <tr>
-
-              <td
-                colSpan="5"
-                className="text-center py-10 text-gray-500"
-              >
-                No Students Found
-              </td>
-
+              <th className="p-3">Name</th>
+              <th className="p-3">Email</th>
+              <th className="p-3">Club</th>
+              <th className="p-3 text-center">Status</th>
+              <th className="p-3 text-center">Actions</th>
             </tr>
+          </thead>
 
-          ) : (
-
-            currentStudents.map((student) => (
-
-              <tr
-                key={student.id}
-                className="border-b"
-              >
-
-                <td className="p-4">{student.name}</td>
-
-                <td>{student.email}</td>
-
-                <td>{student.club || "-"}</td>
-
-                <td className="text-center">
-                  {student.active ? (
-                    <span className="text-green-600 font-semibold">
-                      Active
-                    </span>
-                  ) : (
-                    <span className="text-red-600 font-semibold">
-                      Disabled
-                    </span>
-                  )}
+          <tbody>
+            {filteredStudents.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="text-center py-10 text-gray-500 dark:text-gray-400"
+                >
+                  No Students Found
                 </td>
-
-                <td className="text-center">
-
-                  <button
-                    onClick={() => {
-                      setSelectedStudent(student);
-                      setShowEditModal(true);
-                    }}
-                    className="bg-yellow-500 text-white px-3 py-1 rounded mr-2"
-                  >
-                    Edit
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setSelectedStudent(student);
-                      setShowDeleteModal(true);
-                    }}
-                    className="bg-red-600 text-white px-3 py-1 rounded"
-                  >
-                    Delete
-                  </button>
-
-                </td>
-
               </tr>
+            ) : (
+              currentStudents.map((student) => (
+                <tr
+                  key={student.id}
+                  className="border-b border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
+                >
+                  <td className="p-4">{student.name}</td>
+                  <td className="p-4">{student.email}</td>
+                  <td className="p-4">{student.club || "-"}</td>
 
-            ))
+                  <td className="p-4 text-center">
+                    {student.active ? (
+                      <span className="font-semibold text-green-600 dark:text-green-400">
+                        Active
+                      </span>
+                    ) : (
+                      <span className="font-semibold text-red-600 dark:text-red-400">
+                        Disabled
+                      </span>
+                    )}
+                  </td>
 
-          )}
+                  <td className="p-4 text-center whitespace-nowrap">
+                    <button
+                      onClick={() => {
+                        setSelectedStudent(student);
+                        setShowEditModal(true);
+                      }}
+                      className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded mr-2"
+                    >
+                      Edit
+                    </button>
 
-        </tbody>
+                    <button
+                      onClick={() => {
+                        setSelectedStudent(student);
+                        setShowDeleteModal(true);
+                      }}
+                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
-      </table>
-
-      <div className="flex justify-center items-center gap-2 mt-6">
-
+      <div className="flex flex-wrap justify-center items-center gap-2 mt-6">
         <button
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
           className={`px-4 py-2 rounded ${
             currentPage === 1
-              ? "bg-gray-300 cursor-not-allowed"
+              ? "bg-gray-300 dark:bg-slate-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
               : "bg-blue-600 text-white hover:bg-blue-700"
           }`}
         >
@@ -188,19 +163,17 @@ function StudentTable() {
         </button>
 
         {Array.from({ length: totalPages }, (_, index) => (
-
           <button
             key={index}
             onClick={() => setCurrentPage(index + 1)}
             className={`px-4 py-2 rounded ${
               currentPage === index + 1
                 ? "bg-blue-600 text-white"
-                : "bg-gray-200 hover:bg-gray-300"
+                : "bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-slate-600"
             }`}
           >
             {index + 1}
           </button>
-
         ))}
 
         <button
@@ -210,31 +183,30 @@ function StudentTable() {
           }
           className={`px-4 py-2 rounded ${
             currentPage === totalPages || totalPages === 0
-              ? "bg-gray-300 cursor-not-allowed"
+              ? "bg-gray-300 dark:bg-slate-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
               : "bg-blue-600 text-white hover:bg-blue-700"
           }`}
         >
           Next
         </button>
-
       </div>
 
       {showModal && (
-  <AddStudentModal
-    isOpen={showModal}
-    onClose={() => setShowModal(false)}
-    onStudentAdded={loadStudents}
-  />
-)}
+        <AddStudentModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          onStudentAdded={loadStudents}
+        />
+      )}
 
       {showEditModal && (
-  <EditStudentModal
-    isOpen={showEditModal}
-    student={selectedStudent}
-    onClose={() => setShowEditModal(false)}
-    onStudentUpdated={loadStudents}
-  />
-)}
+        <EditStudentModal
+          isOpen={showEditModal}
+          student={selectedStudent}
+          onClose={() => setShowEditModal(false)}
+          onStudentUpdated={loadStudents}
+        />
+      )}
 
       {showDeleteModal && (
         <DeleteConfirmation
@@ -243,7 +215,6 @@ function StudentTable() {
           onDelete={handleDelete}
         />
       )}
-
     </div>
   );
 }

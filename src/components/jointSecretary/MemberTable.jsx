@@ -23,76 +23,56 @@ function MemberTable() {
   );
 
   return (
-    <div className="bg-white rounded-xl shadow p-6">
-
-      <div className="flex justify-between items-center mb-6">
-
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+      <div className="flex justify-between items-center mb-6 gap-4 flex-wrap">
         <input
           type="text"
           placeholder="Search members..."
           value={searchTerm}
-          onChange={(e) =>
-            setSearchTerm(e.target.value)
-          }
-          className="border rounded-lg px-4 py-2 w-80"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-300 rounded-lg px-4 py-2 w-80"
         />
 
-        <span className="font-semibold">
+        <span className="font-semibold text-gray-800 dark:text-gray-200">
           Total Members: {filteredMembers.length}
         </span>
-
       </div>
 
-      <table className="w-full">
-
-        <thead className="bg-gray-100">
-
-          <tr>
-            <th className="p-3 text-left">Name</th>
-            <th className="text-left">Email</th>
-            <th className="text-left">Club</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          {filteredMembers.length === 0 ? (
-
+      <div className="overflow-x-auto">
+        <table className="w-full text-gray-800 dark:text-gray-200">
+          <thead className="bg-gray-100 dark:bg-gray-700">
             <tr>
-              <td
-                colSpan="3"
-                className="text-center py-10 text-gray-500"
-              >
-                No Members Found
-              </td>
+              <th className="p-3 text-left">Name</th>
+              <th className="p-3 text-left">Email</th>
+              <th className="p-3 text-left">Club</th>
             </tr>
+          </thead>
 
-          ) : (
-
-            filteredMembers.map((member) => (
-
-              <tr
-                key={member.id}
-                className="border-b"
-              >
-                <td className="p-4">
-                  {member.name}
+          <tbody>
+            {filteredMembers.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="3"
+                  className="text-center py-10 text-gray-500 dark:text-gray-400"
+                >
+                  No Members Found
                 </td>
-
-                <td>{member.email}</td>
-
-                <td>{member.club}</td>
               </tr>
-
-            ))
-
-          )}
-
-        </tbody>
-
-      </table>
-
+            ) : (
+              filteredMembers.map((member) => (
+                <tr
+                  key={member.id}
+                  className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <td className="p-4">{member.name}</td>
+                  <td className="p-4">{member.email}</td>
+                  <td className="p-4">{member.club}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

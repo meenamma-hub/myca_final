@@ -48,113 +48,92 @@ function AnnouncementTable() {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow p-6">
-
-      <div className="flex justify-between mb-6">
-
+    <div className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded-xl shadow p-6">
+      <div className="flex justify-between mb-6 gap-4 flex-wrap">
         <input
           type="text"
           placeholder="Search announcements..."
           value={searchTerm}
-          onChange={(e) =>
-            setSearchTerm(e.target.value)
-          }
-          className="border rounded-lg px-4 py-2 w-80"
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-lg px-4 py-2 w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <button
           onClick={() => setShowAdd(true)}
-          className="bg-green-600 text-white px-5 py-2 rounded-lg"
+          className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg transition"
         >
           + Add Announcement
         </button>
-
       </div>
 
-      <table className="w-full">
-
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="p-3 text-left">Title</th>
-            <th>Category</th>
-            <th>Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-
-          {filteredAnnouncements.length === 0 ? (
-
+      <div className="overflow-x-auto">
+        <table className="w-full text-gray-800 dark:text-gray-200">
+          <thead className="bg-gray-100 dark:bg-gray-700">
             <tr>
-              <td
-                colSpan="4"
-                className="text-center py-10 text-gray-500"
-              >
-                No Announcements Found
-              </td>
+              <th className="p-3 text-left">Title</th>
+              <th className="p-3 text-left">Category</th>
+              <th className="p-3 text-left">Date</th>
+              <th className="p-3 text-left">Actions</th>
             </tr>
+          </thead>
 
-          ) : (
-
-            filteredAnnouncements.map((announcement) => (
-
-              <tr
-                key={announcement.id}
-                className="border-b"
-              >
-
-                <td className="p-4">
-                  {announcement.title}
+          <tbody>
+            {filteredAnnouncements.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="4"
+                  className="text-center py-10 text-gray-500 dark:text-gray-400"
+                >
+                  No Announcements Found
                 </td>
-
-                <td>{announcement.category}</td>
-
-                <td>{announcement.date}</td>
-
-                <td>
-
-                  <button
-                    onClick={() => {
-                      setSelectedAnnouncement(announcement);
-                      setShowDetails(true);
-                    }}
-                    className="bg-blue-600 text-white px-3 py-1 rounded mr-2"
-                  >
-                    View
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setSelectedAnnouncement(announcement);
-                      setShowEdit(true);
-                    }}
-                    className="bg-yellow-500 text-white px-3 py-1 rounded mr-2"
-                  >
-                    Edit
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      setSelectedAnnouncement(announcement);
-                      setShowDelete(true);
-                    }}
-                    className="bg-red-600 text-white px-3 py-1 rounded"
-                  >
-                    Delete
-                  </button>
-
-                </td>
-
               </tr>
+            ) : (
+              filteredAnnouncements.map((announcement) => (
+                <tr
+                  key={announcement.id}
+                  className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <td className="p-4">{announcement.title}</td>
+                  <td className="p-4">{announcement.category}</td>
+                  <td className="p-4">{announcement.date}</td>
 
-            ))
+                  <td className="p-4 whitespace-nowrap">
+                    <button
+                      onClick={() => {
+                        setSelectedAnnouncement(announcement);
+                        setShowDetails(true);
+                      }}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2 transition"
+                    >
+                      View
+                    </button>
 
-          )}
+                    <button
+                      onClick={() => {
+                        setSelectedAnnouncement(announcement);
+                        setShowEdit(true);
+                      }}
+                      className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded mr-2 transition"
+                    >
+                      Edit
+                    </button>
 
-        </tbody>
-
-      </table>
+                    <button
+                      onClick={() => {
+                        setSelectedAnnouncement(announcement);
+                        setShowDelete(true);
+                      }}
+                      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {showAdd && (
         <AddAnnouncementModal
@@ -188,7 +167,6 @@ function AnnouncementTable() {
           onDelete={handleDelete}
         />
       )}
-
     </div>
   );
 }

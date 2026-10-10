@@ -59,7 +59,7 @@ const Dashboard = () => {
         <QuickActions />
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3">
+      {/* <div className="mt-6 flex flex-wrap gap-3">
         <button
           onClick={() => navigate("/student/events")}
           className="px-5 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
@@ -72,7 +72,7 @@ const Dashboard = () => {
         >
           View favourite events
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

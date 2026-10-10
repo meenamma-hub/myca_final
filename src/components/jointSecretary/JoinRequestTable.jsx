@@ -15,8 +15,7 @@ function JoinRequestTable() {
 
     setRequests(
       allRequests.filter(
-        (request) =>
-          request.club === currentUser.club
+        (request) => request.club === currentUser.club
       )
     );
   };
@@ -35,106 +34,71 @@ function JoinRequestTable() {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow p-6">
-
-      <table className="w-full">
-
-        <thead className="bg-gray-100">
-
-          <tr>
-            <th className="p-3 text-left">
-              Student
-            </th>
-
-            <th>Email</th>
-
-            <th>Club</th>
-
-            <th>Status</th>
-
-            <th>Action</th>
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          {requests.length === 0 ? (
-
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6">
+      <div className="overflow-x-auto">
+        <table className="w-full text-gray-800 dark:text-gray-200">
+          <thead className="bg-gray-100 dark:bg-gray-700">
             <tr>
-              <td
-                colSpan="5"
-                className="text-center py-8 text-gray-500"
-              >
-                No Join Requests
-              </td>
+              <th className="p-3 text-left">Student</th>
+              <th className="p-3 text-left">Email</th>
+              <th className="p-3 text-left">Club</th>
+              <th className="p-3 text-left">Status</th>
+              <th className="p-3 text-left">Action</th>
             </tr>
+          </thead>
 
-          ) : (
-
-            requests.map((request) => (
-
-              <tr
-                key={request.id}
-                className="border-b"
-              >
-
-                <td className="p-4">
-                  {request.name}
+          <tbody>
+            {requests.length === 0 ? (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="text-center py-8 text-gray-500 dark:text-gray-400"
+                >
+                  No Join Requests
                 </td>
-
-                <td>{request.email}</td>
-
-                <td>{request.club}</td>
-
-                <td>{request.status}</td>
-
-                <td>
-
-                  {request.status === "Pending" && (
-                    <div className="flex gap-2">
-
-                      <button
-                        onClick={() =>
-                          updateStatus(
-                            request,
-                            "Approved"
-                          )
-                        }
-                        className="bg-green-600 text-white px-3 py-1 rounded"
-                      >
-                        Approve
-                      </button>
-
-                      <button
-                        onClick={() =>
-                          updateStatus(
-                            request,
-                            "Rejected"
-                          )
-                        }
-                        className="bg-red-600 text-white px-3 py-1 rounded"
-                      >
-                        Reject
-                      </button>
-
-                    </div>
-                  )}
-
-                </td>
-
               </tr>
+            ) : (
+              requests.map((request) => (
+                <tr
+                  key={request.id}
+                  className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <td className="p-4">{request.name}</td>
+                  <td className="p-4">{request.email}</td>
+                  <td className="p-4">{request.club}</td>
+                  <td className="p-4">{request.status}</td>
 
-            ))
+                  <td className="p-4">
+                    {request.status === "Pending" && (
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() =>
+                            updateStatus(request, "Approved")
+                          }
+                          className="bg-green-600 text-white px-3 py-1 rounded"
+                        >
+                          Approve
+                        </button>
 
-          )}
-
-        </tbody>
-
-      </table>
-
+                        <button
+                          onClick={() =>
+                            updateStatus(request, "Rejected")
+                          }
+                          className="bg-red-600 text-white px-3 py-1 rounded"
+                        >
+                          Reject
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
 
-export default JoinRequestTable; 
+export default JoinRequestTable;

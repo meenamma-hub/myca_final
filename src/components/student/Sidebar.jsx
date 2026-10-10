@@ -51,28 +51,28 @@ function Sidebar({ isOpen, closeSidebar }) {
         </div>
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          <NavLink to="/student/dashboard" onClick={closeSidebar} className={navLinkClass}>
+          <NavLink to="/student/dashboard" onClick={() => {if (window.innerWidth < 1024) {closeSidebar();}}} className={navLinkClass}>
             <FaHome /> Dashboard
           </NavLink>
-          <NavLink to="/student/events" onClick={closeSidebar} className={navLinkClass}>
+          <NavLink to="/student/events" onClick={() => {if (window.innerWidth < 1024) {closeSidebar();}}} className={navLinkClass}>
             <FaCalendarAlt /> Explore Events
           </NavLink>
-          <NavLink to="/student/registrations" onClick={closeSidebar} className={navLinkClass}>
+          <NavLink to="/student/registrations" onClick={() => {if (window.innerWidth < 1024) {closeSidebar();}}} className={navLinkClass}>
             <FaClipboardList /> My Registrations
           </NavLink>
-          <NavLink to="/student/certificates" onClick={closeSidebar} className={navLinkClass}>
+          <NavLink to="/student/certificates" onClick={() => {if (window.innerWidth < 1024) {closeSidebar();}}} className={navLinkClass}>
             <FaCertificate /> Certificates
           </NavLink>
-          <NavLink to="/student/favorites" onClick={closeSidebar} className={navLinkClass}>
+          <NavLink to="/student/favorites" onClick={() => {if (window.innerWidth < 1024) {closeSidebar();}}} className={navLinkClass}>
             <FaHeart /> Favourite Events
           </NavLink>
-          <NavLink to="/student/announcements" onClick={closeSidebar} className={navLinkClass}>
+          <NavLink to="/student/announcements" onClick={() => {if (window.innerWidth < 1024) {closeSidebar();}}} className={navLinkClass}>
             <FaBullhorn /> Announcements
           </NavLink>
-          <NavLink to="/student/profile" onClick={closeSidebar} className={navLinkClass}>
+          <NavLink to="/student/profile" onClick={() => {if (window.innerWidth < 1024) {closeSidebar();}}} className={navLinkClass}>
             <FaUser /> Profile
           </NavLink>
-          <NavLink to="/student/settings" onClick={closeSidebar} className={navLinkClass}>
+          <NavLink to="/student/settings" onClick={() => {if (window.innerWidth < 1024) {closeSidebar();}}} className={navLinkClass}>
             <FaCog /> Settings
           </NavLink>
         </nav>

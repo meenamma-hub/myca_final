@@ -37,7 +37,7 @@ function DashboardCards() {
       {cards.map((card) => (
         <div
           key={card.title}
-          className={`${card.color} text-white rounded-xl p-6 shadow`}
+          className={`${card.color} text-white rounded-xl p-6 shadow border border-transparent dark:border-gray-700`}
         >
           <h3 className="text-lg">{card.title}</h3>
 

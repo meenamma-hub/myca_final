@@ -27,7 +27,6 @@ function AddEventModal({
     });
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -37,7 +36,6 @@ function AddEventModal({
       registeredStudents: [],
       registrationOpen: true,
     });
-
 
     onEventAdded();
 
@@ -55,22 +53,17 @@ function AddEventModal({
     onClose();
   };
 
+  const inputClass =
+    "w-full border border-gray-300 dark:border-slate-600 rounded-lg p-3 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500";
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
-
-      <div className="bg-white w-full max-w-xl rounded-xl shadow-xl p-6">
-
+    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 p-4">
+      <div className="bg-white dark:bg-slate-900 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-xl shadow-xl p-6">
         <h2 className="text-2xl font-bold mb-6">
           Add Event
         </h2>
 
-
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4"
-        >
-
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             name="title"
@@ -78,9 +71,8 @@ function AddEventModal({
             value={formData.title}
             onChange={handleChange}
             required
-            className="w-full border rounded-lg p-3"
+            className={inputClass}
           />
-
 
           <textarea
             name="description"
@@ -88,33 +80,25 @@ function AddEventModal({
             value={formData.description}
             onChange={handleChange}
             required
-            className="w-full border rounded-lg p-3"
+            rows={3}
+            className={inputClass}
           />
-
 
           <select
             name="society"
             value={formData.society}
             onChange={handleChange}
             required
-            className="w-full border rounded-lg p-3"
+            className={inputClass}
           >
-
-            <option value="">
-              Select Society
-            </option>
+            <option value="">Select Society</option>
 
             {clubs.map((club) => (
-              <option
-                key={club.id}
-                value={club.name}
-              >
+              <option key={club.id} value={club.name}>
                 {club.name}
               </option>
             ))}
-
           </select>
-
 
           <input
             type="text"
@@ -123,21 +107,18 @@ function AddEventModal({
             value={formData.venue}
             onChange={handleChange}
             required
-            className="w-full border rounded-lg p-3"
+            className={inputClass}
           />
 
-
-          <div className="grid grid-cols-2 gap-4">
-
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <input
               type="date"
               name="date"
               value={formData.date}
               onChange={handleChange}
               required
-              className="border rounded-lg p-3"
+              className={inputClass}
             />
-
 
             <input
               type="time"
@@ -145,11 +126,9 @@ function AddEventModal({
               value={formData.time}
               onChange={handleChange}
               required
-              className="border rounded-lg p-3"
+              className={inputClass}
             />
-
           </div>
-
 
           <input
             type="number"
@@ -158,9 +137,9 @@ function AddEventModal({
             value={formData.maxParticipants}
             onChange={handleChange}
             required
-            className="w-full border rounded-lg p-3"
+            min="1"
+            className={inputClass}
           />
-
 
           <input
             type="text"
@@ -168,35 +147,27 @@ function AddEventModal({
             placeholder="Banner Image URL (optional)"
             value={formData.banner}
             onChange={handleChange}
-            className="w-full border rounded-lg p-3"
+            className={inputClass}
           />
 
-
           <div className="flex justify-end gap-3 pt-4">
-
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2 border rounded-lg"
+              className="px-5 py-2 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 transition"
             >
               Cancel
             </button>
 
-
             <button
               type="submit"
-              className="px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+              className="px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
             >
               Add Event
             </button>
-
           </div>
-
-
         </form>
-
       </div>
-
     </div>
   );
 }

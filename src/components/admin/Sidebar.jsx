@@ -13,15 +13,17 @@ function Sidebar() {
     `flex items-center px-4 py-3 rounded-lg transition-colors duration-200 ${
       isActive
         ? "bg-blue-600 text-white font-semibold"
-        : "text-gray-700 hover:bg-gray-100"
+        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800"
     }`;
 
   return (
-    <aside className="w-64 min-h-screen bg-white border-r shadow-sm flex flex-col">
+    <aside className="w-64 min-h-screen shrink-0 bg-white dark:bg-slate-900 text-gray-900 dark:text-white border-r border-gray-200 dark:border-slate-700 shadow-sm flex flex-col">
       {/* Header */}
-      <div className="p-6 border-b">
+      <div className="p-6 border-b border-gray-200 dark:border-slate-700">
         <h1 className="text-2xl font-bold text-blue-600">MYCA</h1>
-        <p className="text-sm text-gray-500">Admin Panel</p>
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          Admin Panel
+        </p>
       </div>
 
       {/* Navigation */}
@@ -64,7 +66,7 @@ function Sidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t">
+      <div className="p-4 border-t border-gray-200 dark:border-slate-700">
         <button
           onClick={handleLogout}
           className="w-full rounded-lg bg-red-500 py-2 text-white hover:bg-red-600 transition"

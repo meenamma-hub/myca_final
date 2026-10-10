@@ -21,7 +21,7 @@ const Settings = () => {
   };
 
   const saveSettings = () => {
-    localStorage.setItem(
+    localStorage.setItem( 
       "notificationSettings",
       JSON.stringify({ notifications, darkMode })
     );

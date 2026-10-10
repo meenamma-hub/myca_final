@@ -43,9 +43,9 @@ function JointProfileCard() {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow p-6 max-w-2xl">
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 max-w-2xl">
 
-      <h2 className="text-2xl font-bold mb-6">
+      <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
         Joint Secretary Profile
       </h2>
 
@@ -56,7 +56,7 @@ function JointProfileCard() {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
         />
 
         <input
@@ -64,7 +64,7 @@ function JointProfileCard() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-300"
         />
 
         <input
@@ -72,21 +72,21 @@ function JointProfileCard() {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          className="w-full border rounded-lg p-3"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
         />
 
         <input
           type="text"
           value={currentUser?.club || ""}
           disabled
-          className="w-full border rounded-lg p-3 bg-gray-100"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
         />
 
         <input
           type="text"
           value={currentUser?.role || ""}
           disabled
-          className="w-full border rounded-lg p-3 bg-gray-100"
+          className="w-full border border-gray-300 dark:border-gray-600 rounded-lg p-3 bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400"
         />
 
       </div>
@@ -95,14 +95,14 @@ function JointProfileCard() {
 
         <button
           onClick={handleSave}
-          className="bg-blue-600 text-white px-5 py-2 rounded-lg"
+          className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
         >
           Save
         </button>
 
         <button
           onClick={handleLogout}
-          className="bg-red-600 text-white px-5 py-2 rounded-lg"
+          className="bg-red-600 text-white px-5 py-2 rounded-lg hover:bg-red-700 transition"
         >
           Logout
         </button>

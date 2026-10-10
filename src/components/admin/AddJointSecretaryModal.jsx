@@ -1,6 +1,6 @@
 import { useState } from "react";
 import clubs from "../../data/societies";
-import {addUser,getUsers,} from "../../services/userService";
+import { addUser, getUsers } from "../../services/userService";
 
 function AddJointSecretaryModal({ onClose, refreshTable }) {
   const [formData, setFormData] = useState({
@@ -20,10 +20,11 @@ function AddJointSecretaryModal({ onClose, refreshTable }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const emailExists = getUsers().find((user) =>
-    user.email.toLowerCase() ===
-    formData.email.toLowerCase());
-    
+    const emailExists = getUsers().find(
+      (user) =>
+        user.email.toLowerCase() === formData.email.toLowerCase()
+    );
+
     if (emailExists) {
       alert("Email already exists!");
       return;
@@ -40,54 +41,58 @@ function AddJointSecretaryModal({ onClose, refreshTable }) {
       createdAt: new Date().toISOString(),
     };
 
-  addUser(newUser);
-  refreshTable();
-  onClose();
+    addUser(newUser);
+    refreshTable();
+    onClose();
   };
 
+  const inputClass =
+    "w-full border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 p-3 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500";
+
   return (
-    <div className="fixed inset-0 bg-black/50 flex justify-center items-center">
-
-      <div className="bg-white rounded-xl shadow-lg w-[450px] p-8">
-
+    <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center p-4">
+      <div className="bg-white dark:bg-slate-900 text-gray-900 dark:text-white border border-gray-200 dark:border-slate-700 rounded-xl shadow-lg w-full max-w-[450px] max-h-[90vh] overflow-y-auto p-8">
         <h2 className="text-2xl font-bold mb-6">
           Add Joint Secretary
         </h2>
 
         <form onSubmit={handleSubmit}>
-
           <input
             type="text"
             name="name"
             placeholder="Full Name"
+            value={formData.name}
             required
             onChange={handleChange}
-            className="w-full border p-3 rounded mb-4"
+            className={inputClass}
           />
 
           <input
             type="email"
             name="email"
             placeholder="College Email"
+            value={formData.email}
             required
             onChange={handleChange}
-            className="w-full border p-3 rounded mb-4"
+            className={inputClass}
           />
 
           <input
             type="password"
             name="password"
             placeholder="Temporary Password"
+            value={formData.password}
             required
             onChange={handleChange}
-            className="w-full border p-3 rounded mb-4"
+            className={inputClass}
           />
 
           <select
             name="club"
+            value={formData.club}
             required
             onChange={handleChange}
-            className="w-full border p-3 rounded mb-6"
+            className={inputClass}
           >
             <option value="">Select Club</option>
 
@@ -99,28 +104,23 @@ function AddJointSecretaryModal({ onClose, refreshTable }) {
           </select>
 
           <div className="flex justify-end gap-3">
-
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2 rounded bg-gray-300"
+              className="px-5 py-2 rounded bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-slate-600 transition"
             >
               Cancel
             </button>
 
             <button
               type="submit"
-              className="px-5 py-2 rounded bg-blue-600 text-white"
+              className="px-5 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition"
             >
               Save
             </button>
-
           </div>
-
         </form>
-
       </div>
-
     </div>
   );
 }
