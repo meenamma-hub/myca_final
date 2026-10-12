@@ -30,8 +30,10 @@ function RegistrationTable() {
   );
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
-      <h2 className="text-2xl font-bold mb-5">My Registrations</h2>
+    <div className="bg-white dark:bg-slate-900 rounded-lg shadow dark:shadow-black/30 border border-gray-100 dark:border-slate-700 p-6">
+      <h2 className="text-2xl font-bold mb-5 text-gray-800 dark:text-white">
+        My Registrations
+      </h2>
 
       <SearchBar
         value={searchTerm}
@@ -40,7 +42,7 @@ function RegistrationTable() {
       />
 
       <div className="overflow-x-auto">
-        <table className="min-w-full border">
+        <table className="min-w-full border border-gray-200 dark:border-slate-700">
           <thead className="bg-blue-600 text-white">
             <tr>
               <th className="p-3">Event</th>
@@ -52,7 +54,10 @@ function RegistrationTable() {
 
           <tbody>
             {filtered.map((item) => (
-              <tr key={item.id} className="border-b text-center">
+              <tr
+                key={item.id}
+                className="border-b border-gray-200 dark:border-slate-700 text-center text-gray-800 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-800"
+              >
                 <td className="p-3">{item.event}</td>
                 <td className="p-3">{item.society}</td>
                 <td className="p-3">{item.date}</td>

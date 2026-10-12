@@ -27,10 +27,15 @@ function DashboardCards() {
       {cards.map((card, index) => (
         <div
           key={index}
-          className={`${card.color} text-white rounded-xl shadow-lg p-6`}
+          className={`${card.color} text-white rounded-xl shadow-lg dark:shadow-black/30 p-6 transition-shadow`}
         >
-          <h2 className="text-lg font-medium">{card.title}</h2>
-          <p className="text-4xl font-bold mt-4">{card.value}</p>
+          <h2 className="text-lg font-medium">
+            {card.title}
+          </h2>
+
+          <p className="text-4xl font-bold mt-4">
+            {card.value}
+          </p>
         </div>
       ))}
     </div>

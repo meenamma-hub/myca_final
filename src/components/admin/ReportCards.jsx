@@ -43,11 +43,10 @@ function ReportCards() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
-
       {cards.map((card) => (
         <div
           key={card.title}
-          className={`${card.color} rounded-xl p-6 text-white shadow`}
+          className={`${card.color} rounded-xl p-6 text-white shadow-lg dark:shadow-black/30 transition-shadow`}
         >
           <h3 className="text-lg font-medium">
             {card.title}
@@ -58,7 +57,6 @@ function ReportCards() {
           </p>
         </div>
       ))}
-
     </div>
   );
 }
